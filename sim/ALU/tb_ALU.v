@@ -1,0 +1,120 @@
+`timescale 1ns/1ns 
+
+module tb_ALU ();
+
+    parameter CLK_PERIOD = 20;
+    parameter DIV_CLK = 25;
+
+    reg                 sys_clk;        
+    reg                 sys_rst_n;
+    
+    reg     [31:0]      addr_i  ;
+
+    reg     [5:0]       stall   ;
+    reg     [5:0]       op      ;
+    reg     [5:0]       func    ;
+    reg     [15:0]      imm     ;
+    reg     [31:0]      A       ;
+    reg     [31:0]      B       ;
+
+    wire    [31:0]      F       ;
+    wire    [31:0]      address ;
+    wire    [31:0]      s_imm   ;
+    wire    [31:0]      u_imm   ;
+
+    wire                overflow;
+    wire                zero    ;
+    wire                carryout;
+
+
+    assign  s_imm   = {{16{imm[15]}}, imm[15:0]};    // 立即数有符号位扩展
+    assign  u_imm   = {{16{1'b0}},    imm[15:0]};    // 立即数无符号位扩展
+
+    initial begin
+        sys_clk     <= 1'b0;
+        sys_rst_n   <= 1'b0;
+        stall       <= 6'b0;
+        #100
+        sys_rst_n   <= 1'b1;
+        #40
+
+        op          <= 6'b000000; // ADD
+        func        <= 6'b100000;
+        addr_i      <= 31'h0;
+        imm         <= 16'h0000;
+        A           <= 32'h7FFFFFFF;
+        B           <= 32'h11111111;
+        #50
+
+        op          <= 6'b000000; // AND
+        func        <= 6'b100100;
+        addr_i      <= 31'h0;
+        imm         <= 16'h0000;
+        A           <= 32'd15;
+        B           <= 32'd61;
+        #50
+
+        op          <= 6'b000010; // j
+        func        <= 6'b000000;
+        addr_i      <= 31'hcab020;
+        imm         <= 16'h0000;
+        A           <= 32'd15;
+        B           <= 32'd61;
+        #50
+
+        op          <= 6'b000100; // beq
+        func        <= 6'b000000;
+        addr_i      <= 31'h0;
+        imm         <= 16'h3434;
+        A           <= 32'd15;
+        B           <= 32'd61;
+        #50
+
+        op          <= 6'b001000; // addi
+        func        <= 6'b000000;
+        addr_i      <= 31'h0;
+        imm         <= 16'h3434;
+        A           <= 32'd15;
+        B           <= 32'd61;
+
+    end
+
+
+    always  #(CLK_PERIOD / 2)   sys_clk = ~sys_clk;
+
+    ALU ALU_0 (
+        .clk        (sys_clk    ),
+        .rst_n      (sys_rst_n  ),
+        .stall_i    (stall      ),   // 挂起标志位
+
+        .addr_i     (addr_i     ),   // 地址扩展
+        .op_i       (op         ),   // 操作符
+        .shamt_i    (           ),   // shamt
+        .func_i     (func       ),   // func
+        .imm_i      (imm        ),   // 立即数
+        .s_imm_i    (s_imm      ),   // 立即数有符号位扩展
+        .u_imm_i    (u_imm      ),   // 立即数无符号位扩展
+
+        .rw_en_i    (1'b0       ),   // 写使能
+        .rw_i       (           ),   // 操作数rw, 写回寄存器地址
+        .mem_wea_i  (           ),   // 内存写使能
+        .pcwr_en_i  (1'b0       ),   // 写pc使能
+
+        .A_i        (A          ),   // 操作数A
+        .B_i        (B          ),   // 操作数B
+
+        // 寄存传递
+        .rw_en_o    (           ),   // 写使能
+        .rw_o       (           ),   // 操作数rw, 写回寄存器地址
+        .mem_wea_o  (           ),   // 内存写使能
+        .pcwr_en_o  (           ),   // 写pc使能
+
+        // ALU计算结果
+        .address_o  (address    ),   // 转移或访存指令的地址
+        .F_o        (F          ),   // ALU输出
+        .overflow_o (overflow   ),   // 溢出标志位
+        .zero_o     (zero       ),   // 零标志位
+        .carryout_o (carryout   )    // 进位
+    );
+
+endmodule

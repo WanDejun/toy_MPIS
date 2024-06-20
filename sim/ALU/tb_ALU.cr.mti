@@ -1,0 +1,15 @@
+F:/FPGA/Architecture/MIPS/rtl/ALU.v {1 {vlog -work work -vopt -stats=none F:/FPGA/Architecture/MIPS/rtl/ALU.v
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
+-- Compiling module ALU
+
+Top level modules:
+	ALU
+
+} {} {}} F:/FPGA/Architecture/MIPS/sim/ALU/tb_ALU.v {1 {vlog -work work -vopt -stats=none F:/FPGA/Architecture/MIPS/sim/ALU/tb_ALU.v
+Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
+-- Compiling module tb_ALU
+
+Top level modules:
+	tb_ALU
+
+} {} {}}

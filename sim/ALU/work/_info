@@ -1,0 +1,73 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dF:/FPGA/ModelSim/examples
+vALU
+Z0 !s110 1718326064
+!i10b 1
+!s100 XU<:>DKB8nn:KHMz>M95@2
+I[ITeL1Y]fB4HcJF_N]MO01
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dF:/FPGA/Architecture/MIPS/sim/ALU
+w1718324997
+8F:/FPGA/Architecture/MIPS/rtl/ALU.v
+FF:/FPGA/Architecture/MIPS/rtl/ALU.v
+L0 1
+Z3 OL;L;10.4;61
+r1
+!s85 0
+31
+!s108 1718326064.813000
+!s107 F:/FPGA/Architecture/MIPS/rtl/ALU.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|F:/FPGA/Architecture/MIPS/rtl/ALU.v|
+!i113 0
+Z4 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+n@a@l@u
+vtb_ALU
+R0
+!i10b 1
+!s100 5Wm>6J0a=QIb8EmDEiK373
+I5gZk[@bi=`S0H;jLDdk]R0
+R1
+R2
+w1718324353
+Z5 8F:/FPGA/Architecture/MIPS/sim/ALU/tb_ALU.v
+Z6 FF:/FPGA/Architecture/MIPS/sim/ALU/tb_ALU.v
+L0 3
+R3
+r1
+!s85 0
+31
+!s108 1718326064.687000
+Z7 !s107 F:/FPGA/Architecture/MIPS/sim/ALU/tb_ALU.v|
+Z8 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|F:/FPGA/Architecture/MIPS/sim/ALU/tb_ALU.v|
+!i113 0
+R4
+ntb_@a@l@u
+vtb_MIPS
+!s110 1718272938
+!i10b 1
+!s100 34:5?bjKJ8ClReMl_:J>Z2
+I19<^_LFedIRA4d?hZ99261
+R1
+R2
+w1718272936
+R5
+R6
+L0 3
+R3
+r1
+!s85 0
+31
+!s108 1718272938.985000
+R7
+R8
+!i113 0
+R4
+ntb_@m@i@p@s
